@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="NoteApp.UI.WpfApp.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:NoteApp.UI.WpfApp.Views" 
+             xmlns:viewmodels="clr-namespace:NoteApp.UI.WpfApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+             mc:Ignorable="d">
+    <StackPanel
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Center">
+
+        <Grid
+            Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <materialDesign:PackIcon
+                Grid.Column="0"
+                Kind="Account"
+                VerticalAlignment="Center"
+                Foreground="White" HorizontalAlignment="Center"/>
+
+            <TextBox
+                Grid.Column="1"
+                materialDesign:HintAssist.Hint="Username"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                Text="{Binding Account.Username, UpdateSourceTrigger=PropertyChanged}"
+                PasswordBox.PasswordChanged="PasswordBox_PasswordChanged"
+                Foreground="White"/>
+        </Grid>
+
+
+        <Grid
+            Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                Grid.Column="0"
+                Kind="Key"
+                VerticalAlignment="Center"
+                Foreground="White"
+                HorizontalAlignment="Center"/>
+
+
+            <PasswordBox
+                Grid.Column="1"
+                materialDesign:HintAssist.Hint="Password"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                Foreground="White"
+                PasswordChanged="PasswordBox_PasswordChanged"/>
+        </Grid>
+        
+        <Button
+            Margin="5"
+            Content="Login"
+            Foreground="White"
+            Command="{Binding LoginAsyncCommand}"/>
+        
+        <Button
+            Margin="5"
+            Content="Exit"
+            Foreground="White"
+            Click="Button_Click"/>
+    </StackPanel>
+</UserControl>
